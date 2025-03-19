@@ -1,16 +1,27 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home"
+import Login from "./pages/pageLogin";
+import Cadastro from "./pages/pageCadastro";
+import Home from "./pages/HomePage";
+import ProtectedRoute from "./components/ProtectedRoutes";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={} />
-        <Route path="/ListEvent" element={<ListEvent />} />
-        <Route path="/evento/novo" element={<CriarEvento />} />
-        <Route path="/organizadores" element={<Organizadores />} />
-        <Route path="/ingressos" element={<Ingressos />} />
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login />} />
+          <Route path="Cadastro" element={<Cadastro />} />
+          <Route
+            path="Home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }

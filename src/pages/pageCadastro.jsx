@@ -6,18 +6,16 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import { Link , useNavigate} from "react-router-dom";
 import { useState } from "react";
-import api from "../axios/axios";
+import api from "../axios/axios"
 
-function Cadastro() {
+function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    data_nascimento: "",
-    name: "",
-    cpf: "",
   });
-
+  const navigate = useNavigate();
   const onChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
@@ -25,22 +23,23 @@ function Cadastro() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    Cadastro();
+    login();
   };
 
-  async function Cadastro() {
-    await api.postCadastro(user).then(
-      (response) => {
-        alert(response.data.message);
+  async function login(){
+    await api.postLogin(user).then(
+      (response)=>{
+        alert(response.data.message)
+        localStorage.setItem('authenticated',true)
+        navigate("users/")
       },
-      (error) => {
-        console.log(error);
-        alert(error.response.data.error);
-      }
-    );
+    (error)=>{
+      console.log(error)
+      alert(error.response.data.error)
+    }
+    )
   }
 
-  //   const [Count, setCount] = useState(0)
   return (
     <Container component="main" maxWidth="xl">
       <Box
@@ -54,7 +53,7 @@ function Cadastro() {
         <Avatar
           sx={{
             margin: 1,
-            backgroundColor: "black",
+            backgroundColor: "green",
           }}
         >
           <LockOutlinedIcon />
@@ -62,7 +61,14 @@ function Cadastro() {
         <Typography component="h1" variant="h5">
           Vio
         </Typography>
-        <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmit}>
+        <Box
+          component="form"
+          sx={{
+            mt: 1,
+          }}
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <TextField
             required
             fullWidth
@@ -84,49 +90,30 @@ function Cadastro() {
             value={user.password}
             onChange={onChange}
           />
-          <TextField
-            required
-            fullWidth
-            id="data_nascimento"
-            label="data_nascimento"
-            name="data_nascimento"
-            type="date"
-            margin="normal"
-            value={user.data_nascimento}
-            onChange={onChange}
-          />
-
-          <TextField
-            required
-            fullWidth
-            id="name"
-            label="Name"
-            name="name"
-            margin="normal"
-            value={user.name}
-            onChange={onChange}
-          />
-          <TextField
-           required
-           fullWidth
-           id="cpf"
-           label="CPF"
-           name="cpf"
-           type="number"
-           margin="normal"
-           value={user.cpf}
-           onChange={onChange}
-          />
-
           <Button
-            sx={{ mt: 3, mb: 2, backgroundColor: "Red", color: "white" }}
-            fullWidth
             type="submit"
+            fullWidth
             variant="contained"
+            sx={{
+              mt: 3,
+              mb: 2,
+              backgroundColor: "green",
+            }}
           >
-            Cadastre-se
+            Entrar
+          </Button>
+          <Button type="submit"
+            fullWidth
+            variant="contained"
+            sx={{
+              mt: 3,
+              mb: 2,
+              backgroundColor: "green",
+            }}>
+            <Link to="/cadastro">Cadastro</Link>
           </Button>
         </Box>
+        
       </Box>
     </Container>
   );

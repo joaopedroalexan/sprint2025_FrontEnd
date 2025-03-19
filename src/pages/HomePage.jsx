@@ -11,4 +11,4 @@ import { useState } from "react";
 import api from "../axios/axios"
 
 
-export default Login
+export default Home
