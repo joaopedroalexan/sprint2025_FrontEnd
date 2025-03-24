@@ -11,4 +11,6 @@ import { useState } from "react";
 import api from "../axios/axios"
 
 
-export default Home
+export default function Home(){
+    
+}

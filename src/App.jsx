@@ -10,8 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/" element={<Login />} />
-          <Route path="Cadastro" element={<Cadastro />} />
+          <Route path="/Cadastro" element={<Cadastro />} />
           <Route
             path="Home"
             element={
@@ -25,3 +24,4 @@ function App() {
     </div>
   );
 }
+export default App;
