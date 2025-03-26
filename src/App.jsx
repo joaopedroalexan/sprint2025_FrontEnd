@@ -12,7 +12,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/Cadastro" element={<Cadastro />} />
           <Route
-            path="Home"
+            path="/Home"
             element={
               <ProtectedRoute>
                 <Home />

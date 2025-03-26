@@ -30,7 +30,7 @@ function Login() {
       (response) => {
         alert(response.data.message);
         localStorage.setItem("authenticated", true);
-        navigate("users/");
+        navigate("/Home");
       },
       (error) => {
         console.log(error);
@@ -49,7 +49,7 @@ function Login() {
           alignItems: "center",
         }}
       >
-        <img src={logo} style={{ width: "30%" }} />
+        <img src={logo} style={{ width: "20%" }} />
         <Typography component="h1" variant="h5">
           Faça Login
         </Typography>
@@ -57,25 +57,32 @@ function Login() {
           component="form"
           sx={{
             mt: 1,
+            display: "flex",
+            flexDirection: "column",
+            width: "80%",
+            alignItems: "center",
           }}
           onSubmit={handleSubmit}
           noValidate
         >
+          <Typography component="h3">CPF</Typography>
           <TextField
             required
             fullWidth
-            id="email"
-            label="Email"
-            name="email"
+            id="cpf"
+            label="cpf"
+            name="cpf"
             margin="normal"
-            value={user.email}
+            value={user.cpf}
             onChange={onChange}
           />
+          <Typography>Senha</Typography>
           <TextField
             required
             fullWidth
             id="password"
-            label="Senha"
+            label="senha"
+            Typography="Senha"
             name="password"
             margin="normal"
             type="password"
@@ -94,9 +101,9 @@ function Login() {
           >
             Entrar
           </Button>
-          <h4 style={{fontFamily:"initial"}}>Não tem uma conta</h4>
+          <h4 sx={{ fontFamily: "initial" }}>Não tem uma conta</h4>
           <Link to="/cadastro" style={{ color: "blue" }}>
-          Clique aqui!
+            Clique aqui!
           </Link>
         </Box>
       </Box>
